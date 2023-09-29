@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale:1.0">
+    <title>Simple Calculator</title>
+</head>
+
+<body>
+    <h1>Arithmetic Expression Calculator</h1>
+    <form action="/calculate/" method="post" id="calcForm">
+        {% csrf_token %}
+        <input type="text" name="expression" placeholder="Enter your arithmetic expression here..."
+            value="{{ expression }}" required id="expressionInput">
+        <br>
+        <input type="button", value="PreviousAnswer", id="PreviousAnswer">
+        <input type="submit" value="Submit">
+        <input type="button" value="Clear" id="clearButton">
+    </form>
+    <br>
+    <div id="result">
+        {% if result %}
+            <strong>Result:</strong> <span>{{ result }}</span>
+        {% else %}
+            <strong>Result:</strong> <span id="resultBox">No result yet.</span>
+        {% endif %}
+    </div>
+    <script>
+        document.getElementById('clearButton').addEventListener('click', function() {
+            document.getElementById('expressionInput').value = '';
+        })
+        document.getElementByID('PreviousAnswer').addEventListener('click', function() {
+            document.getElementByID('expressionInput').value        
+        })
+    </script>
+</body>
